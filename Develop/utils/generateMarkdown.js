@@ -4,7 +4,7 @@ function renderLicenseBadge(license) {
   if (license === 'MIT') {
     return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]'
   }else if (license === 'Apache 2.0') {
-    return '[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]'
+    return '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
   } else if (license === 'ISC') {
     return '[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)]'
   } else if (license === 'Unlicense') {
@@ -16,39 +16,40 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license === 'MIT') {
-    return 'https://opensource.org/licenses/MIT'
+    return '(https://opensource.org/licenses/MIT)'
   }else if (license === 'Apache 2.0') {
-    return 'https://opensource.org/licenses/Apache-2.0'
+    return '(https://opensource.org/licenses/Apache-2.0)'
   } else if (license === 'ISC') {
-    return 'https://opensource.org/licenses/ISC'
+    return '(https://opensource.org/licenses/ISC)'
   } else if (license === 'Unlicense') {
-    return 'http://unlicense.org/'
+    return '(http://unlicense.org/)'
   }
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  licenseLink = renderLicenseLink(data.license);
-  if (data.license === 'None') {
+  licenseLink = renderLicenseLink(license);
+  if (license === 'None') {
     return ''
   } else {
-    return `##License ${data.license}: ${licenseLink}`
+    return `##License ${license}: ${licenseLink}`
   }
 }
+renderLicenseSection();
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   //Get title from user input
   return `# ${data.title}
-  ${renderLicenseBadge(data.licence)}
+  ${renderLicenseBadge(data.license)}
   ## Table of Contents
-  a) [Description] (#description)
-  b) [Installation Guide] (#installation)
-  c) [Usage] (#usage)
-  d) [Contribution Guidelines] (#contribution)
-  e) [Test] (#test)
-  f) [Questions] (#contact)
+  a) [Description](#description) <br>
+  b) [Installation Guide](#installation) <br>
+  c) [Usage](#usage) <br>
+  d) [Contribution Guidelines](#contribution) <br>
+  e) [Test](#test) <br>
+  f) [Questions](#questions) <br>
   ## Description
   ${data.description}
   ## Installation Guide
@@ -60,7 +61,7 @@ function generateMarkdown(data) {
   ## Test
   ${data.test}
   ## License
-  [${data.license}]${renderLicenseLink(data.licence)}
+  [${data.license}]${renderLicenseLink(data.license)}
   ## Questions
   For any questions please use the following to contact
   Email: ${data.contact}
