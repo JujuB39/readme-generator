@@ -52,7 +52,7 @@ function generateMarkdown(data) {
   f) [Questions](#questions) <br>
   ## Description
   ${data.description}
-  ## Installation Guide
+  ## Installation
   ${data.installation}
   ## Usage
   ${data.usage}
